@@ -3,14 +3,12 @@
 import 'package:bookly_app/core/utils/assets_data.dart';
 import 'package:flutter/material.dart';
 
-class CustomListViewCard extends StatelessWidget {
-  const CustomListViewCard({super.key});
+class FeaturedListViewItem extends StatelessWidget {
+  const FeaturedListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height*0.28 ,
-      child: AspectRatio(
+    return  AspectRatio(
         aspectRatio: 0.7,
         child: Container(
           decoration: BoxDecoration(
@@ -22,7 +20,6 @@ class CustomListViewCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }
