@@ -32,6 +32,8 @@ class BookDetailsViewBody extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 16),
+          const BookRating(),
         ],
       ),
     );
