@@ -12,17 +12,19 @@ class BookDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
           child: Column(
             children: [
-              const CustomBookDetailsAppBar(),
+              const SizedBox(height: 40),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: const CustomBookDetailsAppBar(),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: width * .2,
+                  horizontal: width * .2 + 30,
                   vertical: 27,
                 ),
                 child: const CustomBookImage(),
@@ -43,22 +45,29 @@ class BookDetailsViewBody extends StatelessWidget {
               const SizedBox(height: 16),
               const BookRating(),
               const SizedBox(height: 36),
-              const BooksAction(),
-              const SizedBox(height: 48),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'You can also like',
-                  style: Styles.textStyle16.copyWith(
-                    fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 36),
+                child: const BooksAction(),
+              ),
+              Expanded(child: const SizedBox(height: 48)),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'You can also like',
+                    style: Styles.textStyle16.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
+              SimilarBooksListView(),
+              const SizedBox(height: 40),
             ],
           ),
         ),
-        SimilarBooksListView(),
-        const SizedBox(height: 28),
       ],
     );
   }
