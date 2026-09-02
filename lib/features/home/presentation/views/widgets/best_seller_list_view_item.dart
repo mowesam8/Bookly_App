@@ -49,13 +49,13 @@ class BookListViewItem extends StatelessWidget {
                       ),
                     ),
                   ),
-      
+
                   const SizedBox(height: 3),
-      
+
                   const Text("J.K. Rowling", style: Styles.textStyle14),
-      
+
                   const SizedBox(height: 3),
-      
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,7 +65,7 @@ class BookListViewItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-      
+
                       const BookRating(),
                     ],
                   ),
