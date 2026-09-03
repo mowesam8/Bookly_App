@@ -1,9 +1,9 @@
-import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/errors/failures.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:bookly_app/features/home/data/models/book_model/books_model.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
@@ -14,7 +14,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       var data = await apiService.get(
         endPoint:
-            'volumes?q=subject:programming&key=$kApiKey&Filtering=free-ebooks&Sorting=newst',
+            'volumes?q=subject:programming&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks&Sorting=newst',
       );
       List<BooksModel> books = [];
       for (var item in data['items']) {
