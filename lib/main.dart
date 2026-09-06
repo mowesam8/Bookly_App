@@ -12,9 +12,6 @@ import 'package:google_fonts/google_fonts.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-print("================================");
-print("API KEY IS: ${dotenv.env['kApiKey']}");
-print("================================");
 
   setupServiceLocator();
   runApp(const BooklyApp());
