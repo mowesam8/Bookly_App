@@ -1,11 +1,13 @@
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/models/book_model/books_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_action.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.book});
+  final BooksModel book;
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +20,26 @@ class BookDetailsSection extends StatelessWidget {
             horizontal: width * .2 + 30,
             vertical: 27,
           ),
-          child: const CustomBookImage(
-            imageUrl:
-                'https://th.bing.com/th/id/R.b6b8b9a5c6e4065f0cf91bfa537b8e6c?rik=32u7PJKF8b9PVQ&pid=ImgRaw&r=0',
+          child: CustomBookImage(
+            imageUrl: book.volumeInfo.imageLinks?.thumbnail ?? '',
           ),
         ),
         const SizedBox(height: 16),
-        Text('The Jungle Book', style: Styles.textStyle30),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Text(
+            book.volumeInfo.title!,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Styles.textStyle30,
+            textAlign: TextAlign.center,
+          ),
+        ),
         const SizedBox(height: 6),
         Opacity(
           opacity: .7,
           child: Text(
-            'Rudyard Kipling',
+            book.volumeInfo.authors![0],
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
@@ -37,7 +47,10 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        const BookRating(rating: 5, count: 244,),
+        BookRating(
+          rating: book.volumeInfo.pageCount!,
+          count: book.volumeInfo.hashCode,
+        ),
         const SizedBox(height: 36),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 36),
