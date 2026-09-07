@@ -13,50 +13,49 @@ class BookDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
 
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: width * .2 + 30,
-            vertical: 27,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * .2, vertical: 27),
+            child: CustomBookImage(
+              imageUrl: book.volumeInfo.imageLinks?.thumbnail ?? '',
+            ),
           ),
-          child: CustomBookImage(
-            imageUrl: book.volumeInfo.imageLinks?.thumbnail ?? '',
-          ),
-        ),
-        const SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Text(
+          const SizedBox(height: 16),
+          Text(
             book.volumeInfo.title!,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Styles.textStyle30,
             textAlign: TextAlign.center,
           ),
-        ),
-        const SizedBox(height: 6),
-        Opacity(
-          opacity: .7,
-          child: Text(
-            book.volumeInfo.authors![0],
-            style: Styles.textStyle18.copyWith(
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w500,
+          const SizedBox(height: 6),
+          Opacity(
+            opacity: .7,
+            child: Text(
+              book.volumeInfo.authors?[0] ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Styles.textStyle18.copyWith(
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 16),
-        BookRating(
-          rating: book.volumeInfo.pageCount!,
-          count: book.volumeInfo.hashCode,
-        ),
-        const SizedBox(height: 36),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36),
-          child:  BooksAction(bookModel: book,),
-        ),
-      ],
+          const SizedBox(height: 16),
+          BookRating(
+            rating: book.volumeInfo.pageCount!,
+            count: book.volumeInfo.hashCode,
+          ),
+          const SizedBox(height: 36),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 36),
+            child: BooksAction(bookModel: book),
+          ),
+        ],
+      ),
     );
   }
 }

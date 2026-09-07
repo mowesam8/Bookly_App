@@ -16,6 +16,7 @@ class SearchReasultListView extends StatelessWidget {
       builder: (context, state) {
         if (state is SearchedBooksSuccess) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 16),
               const Text('Search Result', style: Styles.textStyle18),
@@ -24,12 +25,11 @@ class SearchReasultListView extends StatelessWidget {
                 child: ListView.builder(
                   shrinkWrap: true,
                   padding: EdgeInsets.zero,
-                  itemCount: 10,
+                  itemCount: state.books.length,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(bottom: 20),
-                      // child: BookListViewItem(),
-                      child: Text('data'),
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: NewestBooksListViewItem( bookModel: state.books[index] ,),
                     );
                   },
                 ),
