@@ -1,6 +1,6 @@
 import 'package:bookly_app/core/errors/failures.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
-import 'package:bookly_app/core/models/book_model/books_model.dart';
+import 'package:bookly_app/core/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -11,15 +11,15 @@ class HomeRepoImpl implements HomeRepo {
 
   HomeRepoImpl({required this.apiService});
   @override
-  Future<Either<Failure, List<BooksModel>>> featchNewsetBooks() async {
+  Future<Either<Failure, List<BookModel>>> featchNewsetBooks() async {
     try {
       var data = await apiService.get(
         endPoint:
             'volumes?q=subject:computer science&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks&Sorting=newst',
       );
-      List<BooksModel> books = [];
+      List<BookModel> books = [];
       for (var item in data['items']) {
-        books.add(BooksModel.fromJson(item));
+        books.add(BookModel.fromJson(item));
       }
 
       return right(books);
@@ -33,15 +33,15 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> featchFeaturedBooks() async {
+  Future<Either<Failure, List<BookModel>>> featchFeaturedBooks() async {
     try {
       var data = await apiService.get(
         endPoint:
             'volumes?q=subject:programming&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks',
       );
-      List<BooksModel> books = [];
+      List<BookModel> books = [];
       for (var item in data['items']) {
-        books.add(BooksModel.fromJson(item));
+        books.add(BookModel.fromJson(item));
       }
 
       return right(books);
@@ -55,7 +55,7 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> featchSimilarBooks({
+  Future<Either<Failure, List<BookModel>>> featchSimilarBooks({
     required String category,
   }) async {
     try {
@@ -63,9 +63,9 @@ class HomeRepoImpl implements HomeRepo {
         endPoint:
             'volumes?q=subject:$category&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks&Sorting=relevance',
       );
-      List<BooksModel> books = [];
+      List<BookModel> books = [];
       for (var item in data['items']) {
-        books.add(BooksModel.fromJson(item));
+        books.add(BookModel.fromJson(item));
       }
 
       return right(books);

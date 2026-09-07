@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:bookly_app/core/models/book_model/books_model.dart';
+import 'package:bookly_app/core/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_action.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class BookDetailsSection extends StatelessWidget {
   const BookDetailsSection({super.key, required this.book});
-  final BooksModel book;
+  final BookModel book;
 
   @override
   Widget build(BuildContext context) {
