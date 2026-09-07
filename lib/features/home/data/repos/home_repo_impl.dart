@@ -15,7 +15,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       var data = await apiService.get(
         endPoint:
-            'volumes?q=subject:programming&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks&Sorting=newst',
+            'volumes?q=subject:computer science&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks&Sorting=newst',
       );
       List<BooksModel> books = [];
       for (var item in data['items']) {
@@ -33,11 +33,35 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> featchFeaturedBooks() async{
+  Future<Either<Failure, List<BooksModel>>> featchFeaturedBooks() async {
     try {
       var data = await apiService.get(
         endPoint:
             'volumes?q=subject:programming&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks',
+      );
+      List<BooksModel> books = [];
+      for (var item in data['items']) {
+        books.add(BooksModel.fromJson(item));
+      }
+
+      return right(books);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<BooksModel>>> featchSimilarBooks({
+    required String category,
+  }) async {
+    try {
+      var data = await apiService.get(
+        endPoint:
+            'volumes?q=subject:computer science&key=${dotenv.env['kApiKey']}&Filtering=free-ebooks&Sorting=relevance',
       );
       List<BooksModel> books = [];
       for (var item in data['items']) {
