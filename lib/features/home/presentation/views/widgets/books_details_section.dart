@@ -18,7 +18,10 @@ class BookDetailsSection extends StatelessWidget {
             horizontal: width * .2 + 30,
             vertical: 27,
           ),
-          child: const CustomBookImage(imageUrl: 'https://th.bing.com/th/id/R.b6b8b9a5c6e4065f0cf91bfa537b8e6c?rik=32u7PJKF8b9PVQ&pid=ImgRaw&r=0',),
+          child: const CustomBookImage(
+            imageUrl:
+                'https://th.bing.com/th/id/R.b6b8b9a5c6e4065f0cf91bfa537b8e6c?rik=32u7PJKF8b9PVQ&pid=ImgRaw&r=0',
+          ),
         ),
         const SizedBox(height: 16),
         Text('The Jungle Book', style: Styles.textStyle30),
@@ -34,7 +37,7 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        const BookRating(),
+        const BookRating(rating: 5, count: 244,),
         const SizedBox(height: 36),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 36),
