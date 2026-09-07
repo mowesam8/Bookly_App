@@ -1,18 +1,22 @@
+import 'package:bookly_app/core/utils/debouncer.dart';
 import 'package:bookly_app/features/search/presentation/manager/searched_books_cubit/searched_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key});
+  CustomSearchTextField({super.key});
+  final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onChanged: (value) {
-        BlocProvider.of<SearchedBooksCubit>(
-          context,
-        ).fetchSearchedBooks(term: value);
+        _debouncer.run(() {
+          BlocProvider.of<SearchedBooksCubit>(
+            context,
+          ).fetchSearchedBooks(term: value);
+        });
       },
       decoration: InputDecoration(
         hintText: 'Search',

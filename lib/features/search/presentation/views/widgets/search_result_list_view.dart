@@ -40,8 +40,10 @@ class SearchReasultListView extends StatelessWidget {
           return CustomErrorWidget(errorMessage: state.errorMessage);
         } else if (state is SearchedBooksLoading) {
           return CustomLoadingIndicator();
-        } else {
+        } else if(state is SearchedBooksInitial){
           return InitialSearchViewBody();
+        }else{
+          return const SizedBox();
         }
       },
     );

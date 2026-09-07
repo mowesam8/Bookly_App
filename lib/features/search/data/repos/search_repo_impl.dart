@@ -14,6 +14,10 @@ class SearchRepoImpl implements SearchRepo{
   Future<Either<Failure, List<BookModel>>> featchSearchedBooks({
     required String terms,
   }) async {
+    if (terms.trim().isEmpty) {
+      return right([]);
+    }
+    
     try {
       var data = await apiService.get(
         endPoint:

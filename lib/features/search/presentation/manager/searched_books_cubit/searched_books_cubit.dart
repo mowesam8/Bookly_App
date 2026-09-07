@@ -6,15 +6,18 @@ import 'package:equatable/equatable.dart';
 part 'searched_books_state.dart';
 
 class SearchedBooksCubit extends Cubit<SearchedBooksState> {
-  SearchedBooksCubit({required this.searchRepo}) : super(SearchedBooksInitial());
+  SearchedBooksCubit({required this.searchRepo})
+    : super(SearchedBooksInitial());
   final SearchRepo searchRepo;
 
   Future<void> fetchSearchedBooks({required String term}) async {
+    print('SEARCH TERM IS: "$term" (length: ${term.length})');
+    
     if (term.trim().isEmpty) {
       emit(SearchedBooksInitial());
       return;
     }
-    
+
     emit(SearchedBooksLoading());
     var result = await searchRepo.featchSearchedBooks(terms: term);
     result.fold(
