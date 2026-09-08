@@ -24,6 +24,22 @@
 
 ---
 
+## 📱 App Screenshots
+
+<p align="center">
+  <img src="assets/images/bookly.gif" width="280" alt="App Preview GIF" />
+</p>
+
+<p align="center">
+  <img src="assets/images/splash.png" width="220" alt="Splash Screen" />
+  <img src="assets/images/home.png" width="220" alt="Home Screen" />
+  <img src="assets/images/bookDetails.png" width="220" alt="Book Details Screen" />
+  <img src="assets/images/search.png" width="220" alt="Search Screen" />
+  <img src="assets/images/searchResult.png" width="220" alt="Search Result Screen" />
+</p>
+
+---
+
 ## 📖 About the Project
 
 **Bookly** is a mobile book browsing and searching application that lets users discover books, browse featured and newest releases, explore similar titles, and dive into rich book details — all powered by the **Google Books API**.
